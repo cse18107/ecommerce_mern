@@ -50,8 +50,21 @@ exports.updateProduct=async(req,res,next)=>{
         message:"product is not exist"
       })
     }
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.id,req.body)
-  }catch(err){
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.id,req.body,{
+      new:true,
+      runValidators:true,
+    }); 
+    res.status(200).json({
+      status:"success",
+      message:updatedProduct
+    })
     
+  }catch(err){
+    res.status(500).json({
+      status:"fail",
+      message:{
+        err
+      }
+    });
   }
 }
