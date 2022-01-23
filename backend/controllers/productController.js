@@ -40,3 +40,18 @@ exports.getAllProducts = async (req, res) => {
     });
   }
 };
+
+exports.updateProduct=async(req,res,next)=>{
+  try{
+    const product = await Product.findById(req.id);
+    if(!product){
+      return res.status(500).json({
+        status:"failed",
+        message:"product is not exist"
+      })
+    }
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.id,req.body)
+  }catch(err){
+    
+  }
+}
