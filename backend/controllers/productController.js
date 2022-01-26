@@ -64,6 +64,7 @@ exports.updateProduct=async(req,res,next)=>{
       status:"fail",
       message:{
         err
+        
       }
     });
   }
